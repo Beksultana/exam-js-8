@@ -23,7 +23,10 @@ class Edit extends Component {
     }
 
     onClickSave = () => {
-        this.props.history.push('/')
+        axios.put('/quotes/' + this.quotesId + '.json', this.state).then(() => {
+            this.props.history.push('/')
+        })
+
     };
 
     valueChange = event => {
