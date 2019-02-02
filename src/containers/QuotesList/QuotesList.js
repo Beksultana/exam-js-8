@@ -3,6 +3,7 @@ import axios from '../../axios-quote-show';
 import {Button, CardFooter, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row} from "reactstrap";
 import {NavLink as RouterNavLink} from 'react-router-dom'
 import './QoutesList.css';
+import {CATEGORIES} from "../../Category";
 
 class QuotesList extends Component {
 
@@ -24,16 +25,16 @@ class QuotesList extends Component {
         let quotes = null;
 
         if (this.state.quotes){
-            quotes = this.state.quotes.map((quote, index) => (
-                <div key={index} className="cardInfoBlock">
+            quotes = this.state.quotes.map((quote) => (
+                <div key={quote.id} className="cardInfoBlock">
                     <div className="cardInfo">
                         <CardText>" {quote.quoteText} "</CardText>
-                        <CardTitle>--- {quote.author}</CardTitle>
-                        <CardFooter className="CardFooter">
-                            <Button color="primary">Edit</Button>
-                            <Button color="danger">Remove</Button>
-                        </CardFooter>
+                        <CardTitle>--- <i>{quote.author}</i></CardTitle>
                     </div>
+                    <CardFooter className="CardFooter">
+                        <Button color="primary">Edit</Button>
+                        <Button color="danger">Remove</Button>
+                    </CardFooter>
                 </div>
             ))
         }
@@ -46,21 +47,17 @@ class QuotesList extends Component {
                         <NavItem>
                             <NavLink tag={RouterNavLink} to="/" exact>All</NavLink>
                         </NavItem>
-                        <NavItem>
-                            <NavLink tag={RouterNavLink} to="/" exact>Star Wars</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink tag={RouterNavLink} to="/" exact>Famous people</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink tag={RouterNavLink} to="/" exact>Saying</NavLink>
-                        </NavItem><NavItem>
-                        <NavLink tag={RouterNavLink} to="/" exact>Humour</NavLink>
-                    </NavItem><NavItem>
-                        <NavLink tag={RouterNavLink} to="/" exact>Motivational</NavLink>
-                    </NavItem>
-
-
+                        {Object.keys(CATEGORIES).map(categoryId => (
+                            <NavItem key={categoryId}>
+                                <NavLink
+                                    tag={RouterNavLink}
+                                    to={'/quotes/' + categoryId}
+                                    exact
+                                >
+                                    {CATEGORIES[categoryId]}
+                                </NavLink>
+                            </NavItem>
+                        ))}
                     </Nav>
                 </Col>
                 <Col sm={9}>

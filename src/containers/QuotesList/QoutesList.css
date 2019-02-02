@@ -3,9 +3,10 @@
 }
 .cardInfoBlock {
     width: 100%;
-    margin: 5px;
+    margin: 10px 0;
     border: 1px solid rgba(0,125,219,0.94);
     border-radius: 5px ;
+
 }
 .cardInfo{
     padding: 10px 15px ;
@@ -14,10 +15,14 @@
 .CardFooter {
     display: flex;
     justify-content: flex-end;
+    margin: 0;
+    padding: 7px;
 }
 .CardFooter Button{
     margin: 0 2px;
+    font-size: 14px;
 }
 .quotesCategryBlock{
     height: 85vh;
+    overflow: auto;
 }

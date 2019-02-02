@@ -16,6 +16,7 @@ class App extends Component {
             <Switch>
                 <Route path="/" exact component={QuotesList}/>
                 <Route path="/add" component={AddQuotes}/>
+                <Route path="/quotes/:categoryId" component={QuotesList}/>
                 <Route render={() => <h1 style={{color: 'red', textAlign: 'center'}}>Not fount!</h1>}/>
             </Switch>
         </Container>
