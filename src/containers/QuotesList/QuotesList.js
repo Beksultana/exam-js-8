@@ -29,6 +29,10 @@ class QuotesList extends Component {
                     <div className="cardInfo">
                         <CardText>" {quote.quoteText} "</CardText>
                         <CardTitle>--- {quote.author}</CardTitle>
+                        <CardFooter className="CardFooter">
+                            <Button color="primary">Edit</Button>
+                            <Button color="danger">Remove</Button>
+                        </CardFooter>
                     </div>
                 </div>
             ))
