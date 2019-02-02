@@ -26,17 +26,17 @@ class Edit extends Component {
         this.props.history.push('/')
     };
 
-    onValueChange = event => {
-        const {name, value} = event.target;
-        this.setState({[name]: value})
+    valueChange = event => {
+        const name = event.target.name;
+        this.setState({[name]: event.target.value})
     };
 
     render() {
         return (
             <Fragment>
                 <Form>
-                    <Input value={this.state.author} onChange={this.onValueChange} type="text"/>
-                    <Input value={this.state.quoteText} onChange={this.onValueChange} type="textarea"/>
+                    <Input value={this.state.author} onChange={this.valueChange} name="author" type="text"/>
+                    <Input value={this.state.quoteText} onChange={this.valueChange} name="quoteText" type="textarea"/>
                     <Button onClick={this.onClickSave}>Save</Button>
                 </Form>
             </Fragment>
