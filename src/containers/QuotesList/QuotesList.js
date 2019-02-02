@@ -11,15 +11,38 @@ class QuotesList extends Component {
       quotes: null
     };
 
-    componentDidMount(){
-        axios.get('quotes.json').then(response => {
-            console.log(response.data);
+    loadData = () => {
+        let url = 'quotes.json';
+        const categoryId = this.props.match.params.categoryId ;
+        if (categoryId){
+            url += `?orderBy="category"&equalTo="${categoryId}"`;
+        }
+
+        axios.get(url).then(response => {
             const quotes = Object.keys(response.data).map(id => {
                 return {...response.data[id], id}
             });
             this.setState({quotes})
+        }).catch(error => {
+            console.log(error);
         })
-    }
+
+    };
+
+    componentDidMount(){
+        this.loadData();
+    };
+
+    componentDidUpdate(prevProps){
+        if (this.props.match.params.categoryId !==
+            prevProps.match.params.categoryId){
+                this.loadData();
+        }
+    };
+
+    deleteHandler = id => {
+        axios.delete('/quotes/' + id + '.json')
+    };
 
     render() {
         let quotes = null;
@@ -33,7 +56,7 @@ class QuotesList extends Component {
                     </div>
                     <CardFooter className="CardFooter">
                         <Button color="primary">Edit</Button>
-                        <Button color="danger">Remove</Button>
+                        <Button onClick={() => this.deleteHandler(quote.id)} color="danger">Delete</Button>
                     </CardFooter>
                 </div>
             ))
@@ -45,7 +68,7 @@ class QuotesList extends Component {
                     <h5><strong>Products by category: </strong></h5>
                     <Nav vertical>
                         <NavItem>
-                            <NavLink tag={RouterNavLink} to="/" exact>All</NavLink>
+                            <NavLink tag={RouterNavLink} to="/" exact >All</NavLink>
                         </NavItem>
                         {Object.keys(CATEGORIES).map(categoryId => (
                             <NavItem key={categoryId}>
