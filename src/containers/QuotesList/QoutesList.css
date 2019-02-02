@@ -1,0 +1,23 @@
+.sm3{
+    border-right: 1px solid rgba(0,125,219,0.94);
+}
+.cardInfoBlock {
+    width: 100%;
+    margin: 5px;
+    border: 1px solid rgba(0,125,219,0.94);
+    border-radius: 5px ;
+}
+.cardInfo{
+    padding: 10px 15px ;
+}
+
+.CardFooter {
+    display: flex;
+    justify-content: flex-end;
+}
+.CardFooter Button{
+    margin: 0 2px;
+}
+.quotesCategryBlock{
+    height: 85vh;
+}
