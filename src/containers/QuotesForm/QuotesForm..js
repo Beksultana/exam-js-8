@@ -3,7 +3,7 @@ import {CATEGORIES} from '../../Category';
 import './QuotesForm.css';
 import {Button, Col, Form, FormGroup, Input, Label} from "reactstrap";
 
-class ProductForm extends Component {
+class QuotesForm extends Component {
 
     state = {
         category: Object.keys(CATEGORIES)[0],
@@ -70,4 +70,4 @@ class ProductForm extends Component {
     }
 }
 
-export default ProductForm;
+export default QuotesForm;

@@ -40,8 +40,14 @@ class QuotesList extends Component {
         }
     };
 
-    deleteHandler = id => {
-        axios.delete('/quotes/' + id + '.json')
+    deleteHandler = (id) => {
+        axios.delete('/quotes/' + id + '.json').finally(() => {
+            this.props.history.replace('/')
+        })
+    };
+
+    edit = (id) => {
+        this.props.history.push(`/quotes/${id}/edit`)
     };
 
     render() {
@@ -55,7 +61,7 @@ class QuotesList extends Component {
                         <CardTitle>--- <i>{quote.author}</i></CardTitle>
                     </div>
                     <CardFooter className="CardFooter">
-                        <Button color="primary">Edit</Button>
+                        <Button onClick={() => this.edit(quote.id)} color="primary">Edit</Button>
                         <Button onClick={() => this.deleteHandler(quote.id)} color="danger">Delete</Button>
                     </CardFooter>
                 </div>
